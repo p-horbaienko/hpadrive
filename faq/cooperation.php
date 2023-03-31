@@ -14,7 +14,7 @@ include ('../layouts/header.php');
     <p>
     З питань співпраці та пропозицій звертайтесь за контактними даними:
     </p>
-    <div class="div-contacts-main m-2 ">
+    <div class="div-contacts-main">
   		<a class="call" href="tel:<?php echo $contacts['phone']; ?>">
   			<div >
   				<i class="fas fa-phone"></i>
@@ -24,7 +24,7 @@ include ('../layouts/header.php');
   				<span class="d-block"><?php echo $contacts['phone']; ?></span>
   			</div>
   		</a>
-  		<a class="viber" href="viber://chat/?number=<?php echo $contacts['phone']; ?>">
+  		<a class="viber" href="viber://chat?number=<?php echo $contacts['phone']; ?>">
   			<div >
   				<i class="fab fa-viber"></i>
   			</div>
@@ -34,7 +34,7 @@ include ('../layouts/header.php');
   			</div>
   		</a>
   	</div>
-    <a class="link-to-mainpage" href="<?php echo $url; ?>">
+	  <a class="link-to-mainpage" href="<?php echo $url; ?>">
       <i class="fa-solid fa-house"></i>
       <span>На головну</span>
     </a>

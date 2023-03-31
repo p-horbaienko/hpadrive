@@ -1,17 +1,38 @@
 // formatting phone contacts
-function contactsFormat(elems) {
-  elems.each(function () {
-    var word = $(this).text();
-    var newWord = "";
+function contactsFormatUp(elems) {
+  $(elems).each(function(){
 
-    for (var i = 0; i < word.length; i++) {
-      newWord += word[i];
-      if (i == 2 || i == 5 || i == 8 || i == 10)
+    var newWord = "";
+    var link = $(this).attr('href');
+    link = link.slice(link.indexOf('+'));
+    
+    for (var i = 0; i < link.length; i++) {
+      newWord += link[i];
+      if (i == 2 || i == 5 || i == 8 || i == 10){
         newWord += " ";
+      }
     }
 
-    $(this).text(newWord);
+    $(this).find('span:last-child').text(newWord);
   });
+}
+
+function contactsFormat(elems) {
+    $(elems).each(function(){
+
+      var newWord = "";
+      var link = $(this).attr('href');
+      link = link.slice(link.indexOf('+'));
+      
+      for (var i = 0; i < link.length; i++) {
+        newWord += link[i];
+        if (i == 2 || i == 5 || i == 8 || i == 10){
+          newWord += " ";
+        }
+      }
+  
+      $(this).text(newWord);
+    });
 }
 
 
@@ -74,31 +95,25 @@ $(document).ready(function () {
   });
 
 
-  // Car moving animation 
-  let winWidth = $(window).width();
-  let moveWidth = 250;
-  if (winWidth < 1400 && winWidth >= 1200) {
-    moveWidth = '18%';
-  }
-  else if (winWidth < 1200 && winWidth >= 992) {
-    moveWidth = '15%';
-  }
-  else if (winWidth < 992 && winWidth >= 768) {
-    moveWidth = '15%';
-  }
-
-  $('.img-car').animate({ "right": moveWidth }, 2000);
-  $('.div-contacts-main a').addClass('animate');
+  // Animation
+  $('.div-capital').animate({ "right": 0 }, 2000); 
+  
+  $('.div-contacts-main a').animate({"opacity":"1"},2000);
   $('.img-map').animate({ "opacity": "1" }, 300);
   $('.img-map').animate({ "top": "0" }, 1500);
   $('.h-capital, .h-country').animate({ "opacity": "1" }, 4000);
   $('.d-info i').animate({ 'opacity': '1' }, 2500);
 
-  contactsFormat($('.div-contacts-main a span:last-child, .f-contacts a'));
+  contactsFormatUp($('.div-contacts-main a'));
+  contactsFormat($('.f-contacts a'));
   
   $('nav a').on('click',function(){
     $('.hamburger').trigger('click');
   });
+
+  if( $(window).width() > 768 ) {
+     
+  }
 
 
 });
